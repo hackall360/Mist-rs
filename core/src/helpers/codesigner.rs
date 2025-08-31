@@ -1,5 +1,5 @@
-use std::path::Path;
 use std::error::Error;
+use std::path::Path;
 
 #[cfg(target_os = "macos")]
 pub fn sign(_path: &Path) -> Result<(), Box<dyn Error>> {

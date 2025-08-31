@@ -1,6 +1,6 @@
+use reqwest::Client;
 use std::path::Path;
 use tokio::fs;
-use reqwest::Client;
 
 pub struct DownloadManager {
     client: Client,
@@ -8,7 +8,9 @@ pub struct DownloadManager {
 
 impl DownloadManager {
     pub fn new() -> Self {
-        Self { client: Client::new() }
+        Self {
+            client: Client::new(),
+        }
     }
 
     pub async fn download(&self, url: &str, dest: &Path) -> Result<(), Box<dyn std::error::Error>> {

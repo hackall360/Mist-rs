@@ -1,6 +1,6 @@
-use mist_rs::helpers::file_manager::{copy_file, move_file_path, remove_file};
-use tempfile::tempdir;
+use mist_core::helpers::file_manager::{copy_file, move_file_path, remove_file};
 use std::fs;
+use tempfile::tempdir;
 
 #[test]
 fn file_operations_work() {

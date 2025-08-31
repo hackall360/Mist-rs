@@ -1,4 +1,4 @@
-use mist_rs::helpers::download_manager::DownloadManager;
+use mist_core::helpers::download_manager::DownloadManager;
 use tempfile::tempdir;
 
 #[tokio::test]
@@ -7,10 +7,7 @@ async fn downloads_file() {
     let dest = dir.path().join("rust-logo.png");
     let manager = DownloadManager::new();
     manager
-        .download(
-            "https://www.rust-lang.org/logos/rust-logo-32x32.png",
-            &dest,
-        )
+        .download("https://www.rust-lang.org/logos/rust-logo-32x32.png", &dest)
         .await
         .expect("download");
     assert!(dest.exists());
