@@ -1,6 +1,6 @@
-use mist_rs::helpers::disk_image_creator::create_disk_image;
-use tempfile::tempdir;
+use mist_core::helpers::disk_image_creator::create_disk_image;
 use std::fs::{self, File};
+use tempfile::tempdir;
 
 #[cfg(target_os = "macos")]
 #[test]

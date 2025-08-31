@@ -1,6 +1,6 @@
+use fs_extra::file::{copy, move_file, remove, CopyOptions};
 use std::error::Error;
 use std::path::Path;
-use fs_extra::file::{copy, remove, move_file, CopyOptions};
 
 pub fn copy_file(src: &Path, dest: &Path) -> Result<(), Box<dyn Error>> {
     copy(src, dest, &CopyOptions::new())?;
