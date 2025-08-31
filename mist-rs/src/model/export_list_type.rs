@@ -1,0 +1,25 @@
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum ExportListType {
+    Csv,
+    Json,
+    Plist,
+    Yaml,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json;
+
+    #[test]
+    fn serialize_round_trip() {
+        let t = ExportListType::Csv;
+        let json = serde_json::to_string(&t).unwrap();
+        assert_eq!(json, "\"csv\"");
+        let de: ExportListType = serde_json::from_str(&json).unwrap();
+        assert_eq!(de, t);
+    }
+}
