@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "mist-rs",
+    "core"
+]
+resolver = "2"
