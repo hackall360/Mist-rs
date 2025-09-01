@@ -1,4 +1,4 @@
-use mist_core::helpers::disk_image_creator::create_disk_image;
+use mist_core::helpers::disk_image::{default_provider, DiskImageProvider};
 use std::fs::{self, File};
 use tempfile::tempdir;
 
@@ -10,7 +10,8 @@ fn creates_disk_image_macos() {
     fs::create_dir(&src).unwrap();
     File::create(src.join("test.txt")).unwrap();
     let dmg = tmp.path().join("test.dmg");
-    create_disk_image(&src, &dmg).expect("create dmg");
+    let provider = default_provider();
+    provider.create(&src, &dmg).expect("create dmg");
     assert!(dmg.exists());
 }
 
@@ -22,7 +23,8 @@ fn creates_disk_image_stub() {
     fs::create_dir(&src).unwrap();
     File::create(src.join("test.txt")).unwrap();
     let dmg = tmp.path().join("test.dmg");
-    create_disk_image(&src, &dmg).expect("create dmg");
+    let provider = default_provider();
+    provider.create(&src, &dmg).expect("create dmg");
     assert!(dmg.exists());
     assert!(dmg.is_dir());
     assert!(dmg.join("test.txt").exists());

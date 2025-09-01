@@ -1,5 +1,6 @@
 pub mod codesigner;
-pub mod disk_image_creator;
+pub mod disk_image;
 pub mod download_manager;
 pub mod file_manager;
-pub mod sparkle_updater;
+pub mod launchd;
+pub mod sparkle;
