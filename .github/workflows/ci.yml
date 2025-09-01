@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            bin: mist
+          - os: windows-latest
+            target: x86_64-pc-windows-gnu
+            bin: mist.exe
+          - os: macos-13
+            target: x86_64-apple-darwin
+            bin: mist
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: mist-rs
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+      - name: Smoke test
+        run: ./target/${{ matrix.target }}/release/${{ matrix.bin }} --version
+        shell: bash
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}
+          path: mist-rs/target/${{ matrix.target }}/release/${{ matrix.bin }}
