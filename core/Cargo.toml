@@ -14,3 +14,4 @@ ring = "0.16"
 
 [dev-dependencies]
 tempfile = "3"
+mockito = "0.32"
