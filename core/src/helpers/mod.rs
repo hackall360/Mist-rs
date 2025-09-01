@@ -4,3 +4,5 @@ pub mod download_manager;
 pub mod file_manager;
 pub mod launchd;
 pub mod sparkle;
+pub mod chunklist;
+pub mod validator;
