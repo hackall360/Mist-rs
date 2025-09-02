@@ -1,8 +1,12 @@
+pub mod chunklist;
 pub mod codesigner;
 pub mod disk_image;
 pub mod download_manager;
 pub mod file_manager;
+pub mod installer;
+pub mod iso;
 pub mod launchd;
+pub mod log_manager;
 pub mod sparkle;
-pub mod chunklist;
+pub mod task_manager;
 pub mod validator;
