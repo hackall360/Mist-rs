@@ -19,6 +19,8 @@ enum Commands {
         /// Destination file path
         dest: PathBuf,
     },
+    /// Check for and apply updates to the Mist CLI
+    Update,
 }
 
 #[tokio::main]
@@ -34,6 +36,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Commands::Download { id, dest } => {
             mist_core::installers::download_installer(id, &dest).await?;
             println!("Downloaded installer {id} to {}", dest.display());
+        }
+        Commands::Update => {
+            mist_core::helpers::updater::check_for_updates()?;
         }
     }
 
