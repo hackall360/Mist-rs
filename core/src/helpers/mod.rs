@@ -7,6 +7,8 @@ pub mod installer;
 pub mod iso;
 pub mod launchd;
 pub mod log_manager;
+#[cfg(target_os = "macos")]
 pub mod sparkle;
 pub mod task_manager;
+pub mod updater;
 pub mod validator;
