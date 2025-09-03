@@ -1,0 +1,20 @@
+[package]
+name = "mist-gui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mist-core = { path = "../core" }
+eframe = { version = "0.27", features = ["wgpu"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+
+[package.metadata.bundle]
+identifier = "com.ninxsoft.mist.gui"
+icon = []
+
+[package.metadata.bundle.macos]
+
+[package.metadata.bundle.windows]
+
+[package.metadata.bundle.linux]
+
