@@ -2511,6 +2511,9 @@ version = "0.1.0"
 dependencies = [
  "clap",
  "mist-core",
+ "serde",
+ "serde_json",
+ "serde_yaml",
  "tokio",
 ]
 
