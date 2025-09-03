@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "mist-rs",
-    "core"
+    "core",
+    "gui"
 ]
 resolver = "2"
