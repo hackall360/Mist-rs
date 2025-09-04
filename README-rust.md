@@ -15,3 +15,24 @@ After installing the prerequisites, you can verify the workspace builds with:
 ```bash
 cargo check
 ```
+
+## Cross-compilation
+
+Additional targets can be installed with `rustup`:
+
+```bash
+rustup target add x86_64-unknown-linux-gnu \
+    x86_64-pc-windows-msvc \
+    aarch64-apple-darwin
+```
+
+For a consistent experience across platforms, install [`cross`](https://github.com/cross-rs/cross):
+
+```bash
+cargo install cross
+cross test --target x86_64-pc-windows-msvc
+cross build --release --target aarch64-apple-darwin
+```
+
+Windows builds require the Visual Studio Build Tools and macOS builds require
+Xcode and its command line tools.
