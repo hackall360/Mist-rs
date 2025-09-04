@@ -17,8 +17,14 @@ jobs:
           - os: windows-latest
             target: x86_64-pc-windows-gnu
             bin: mist.exe
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bin: mist.exe
           - os: macos-13
             target: x86_64-apple-darwin
+            bin: mist
+          - os: macos-14
+            target: aarch64-apple-darwin
             bin: mist
     runs-on: ${{ matrix.os }}
     defaults:
