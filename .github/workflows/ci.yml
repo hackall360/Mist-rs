@@ -27,9 +27,6 @@ jobs:
             target: aarch64-apple-darwin
             bin: mist
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        working-directory: mist-rs
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust
@@ -39,10 +36,12 @@ jobs:
           toolchain: stable
           target: ${{ matrix.target }}
           override: true
-      - name: Test
-        run: cargo test --target ${{ matrix.target }}
-      - name: Build
-        run: cargo build --release --target ${{ matrix.target }}
+      - name: Test core and CLI
+        run: |
+          cargo test --manifest-path core/Cargo.toml --target ${{ matrix.target }}
+          cargo test --manifest-path mist-rs/Cargo.toml --target ${{ matrix.target }}
+      - name: Build CLI
+        run: cargo build --manifest-path mist-rs/Cargo.toml --release --target ${{ matrix.target }}
       - name: Smoke test
         run: ./target/${{ matrix.target }}/release/${{ matrix.bin }} --version
         shell: bash
@@ -50,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}
-          path: mist-rs/target/${{ matrix.target }}/release/${{ matrix.bin }}
+          path: target/${{ matrix.target }}/release/${{ matrix.bin }}
